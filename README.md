@@ -1,4 +1,5 @@
 # Crypto Zombies
 
-Code isn't original/mine - from the good people @ cryptozombies.io, the tutorial i'm learning from
+Building out the tutorial from CryptoZombies.io
 
+Code isn't originally mine!
