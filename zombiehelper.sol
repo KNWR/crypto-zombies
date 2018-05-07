@@ -11,9 +11,10 @@ contract ZombieHelper is ZombieFeeding {
     _;
   }
 
-  function withdraw () external onlyOwner {
+  function withdraw() external onlyOwner {
     owner.transfer(this.balance);
   }
+
   function setLevelUpFee(uint _fee) external onlyOwner {
     levelUpFee = _fee;
   }
@@ -38,7 +39,7 @@ contract ZombieHelper is ZombieFeeding {
     uint counter = 0;
     for (uint i = 0; i < zombies.length; i++) {
       if (zombieToOwner[i] == _owner) {
-      	result[counter]=i; // sets the zombie to be the # in zombies.length
+        result[counter] = i;
         counter++;
       }
     }
@@ -46,4 +47,3 @@ contract ZombieHelper is ZombieFeeding {
   }
 
 }
-
