@@ -6,7 +6,6 @@ contract ZombieBattle is ZombieHelper {
   uint randNonce = 0;
   uint attackVictoryProbability = 70;
 
-  // note - potential vulnerability to bad actor nodes here
   function randMod(uint _modulus) internal returns(uint) {
     randNonce++;
     return uint(keccak256(now, msg.sender, randNonce)) % _modulus;
@@ -16,7 +15,11 @@ contract ZombieBattle is ZombieHelper {
     Zombie storage myZombie = zombies[_zombieId];
     Zombie storage enemyZombie = zombies[_targetId];
     uint rand = randMod(100);
-
+    if (rand <= attackVictoryProbability) {
+        myZombie.winCount++;
+        myZombie.level++;
+        enemyZombie.lossCount++;
+        feedAndMultiply(_zombieId, enemyZombie.dna, "zombie");
+    }
   }
 }
-
