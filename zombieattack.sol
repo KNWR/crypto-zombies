@@ -16,10 +16,14 @@ contract ZombieBattle is ZombieHelper {
     Zombie storage enemyZombie = zombies[_targetId];
     uint rand = randMod(100);
     if (rand <= attackVictoryProbability) {
-        myZombie.winCount++;
-        myZombie.level++;
-        enemyZombie.lossCount++;
-        feedAndMultiply(_zombieId, enemyZombie.dna, "zombie");
+      myZombie.winCount++;
+      myZombie.level++;
+      enemyZombie.lossCount++;
+      feedAndMultiply(_zombieId, enemyZombie.dna, "zombie");
+    } else {
+        myZombie.lossCount++;
+        enemyZombie.winCount++;
+        _triggerCooldown(myZombie);
     }
   }
 }
